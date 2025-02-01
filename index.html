@@ -1,0 +1,112 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monthly Timesheet Calendar</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Menu Button -->
+    <button id="menuButton" class="menu-button">
+      <i class="fas fa-cog"></i>
+    </button>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button id="backToCalendar" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+          </button>
+          <h2>Settings</h2>
+          <button class="close-button" data-modal="settingsModal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <!-- Time Entry Section -->
+          <div class="settings-section">
+            <h3 class="settings-section-title">Edit Time Entry</h3>
+            <div class="input-group">
+              <label for="editDate">Select Date:</label>
+              <input type="date" id="editDate" class="full-width">
+              <label for="editClockIn">Clock In Time:</label>
+              <input type="time" id="editClockIn" placeholder="Clock In Time">
+              <label for="editClockOut">Clock Out Time:</label>
+              <input type="time" id="editClockOut" placeholder="Clock Out Time">
+              <div class="button-group">
+                <button id="saveTimeEdit" class="save-button">Save Time Changes</button>
+                <button id="clearTimeEntry" class="clear-button">Clear Time Entry</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phone Numbers Section -->
+          <div class="settings-section phone-numbers-section">
+            <button class="collapse-button" id="phoneNumbersToggle">
+              <span>Phone Numbers</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="collapsible-content" id="phoneNumbersContent">
+              <div class="input-group">
+                <label for="clockInNumber">Clock In Number:</label>
+                <input type="tel" id="clockInNumber" placeholder="Enter clock in number">
+              </div>
+              <div class="input-group">
+                <label for="clockOutNumber">Clock Out Number:</label>
+                <input type="tel" id="clockOutNumber" placeholder="Enter clock out number">
+              </div>
+              <!-- Save button will be dynamically added by JavaScript -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="progress-section">
+      <div class="progress-header">
+        <h3 class="progress-title">Monthly Hours</h3>
+        <span class="progress-stats">0 / 124 hours</span>
+      </div>
+      <div class="progress-bar-container">
+        <div class="progress-bar" style="width: 0%"></div>
+      </div>
+      <div class="hours-remaining">124 hours remaining</div>
+      
+      <!-- New Pay Period Breakdown -->
+      <div class="pay-period-breakdown">
+        <div class="pay-period-section">
+          <span class="pay-period-label">1st Pay Period (1-15)</span>
+          <span class="pay-period-hours" id="firstPayPeriodHours">0h 0m</span>
+        </div>
+        <div class="pay-period-section">
+          <span class="pay-period-label">2nd Pay Period (16-End)</span>
+          <span class="pay-period-hours" id="secondPayPeriodHours">0h 0m</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="calendar-header">
+      <button id="prevMonth" class="month-nav">&lt;</button>
+      <h2 id="currentMonth">October 2023</h2>
+      <button id="nextMonth" class="month-nav">&gt;</button>
+    </div>
+    
+    <div class="calendar">
+      <div class="weekdays">
+        <div>Sun</div>
+        <div>Mon</div>
+        <div>Tue</div>
+        <div>Wed</div>
+        <div>Thu</div>
+        <div>Fri</div>
+        <div>Sat</div>
+      </div>
+      <div id="calendarDays" class="days">
+        <!-- Days will be populated by JavaScript -->
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
